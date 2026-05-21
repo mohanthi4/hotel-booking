@@ -1,5 +1,6 @@
 package com.app.hotel_booking.models;
 
+import com.app.hotel_booking.views.BookingDetailsView;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,5 +17,9 @@ public class BookingDetails {
         this.username = username;
         this.hotelName = hotelName;
         this.roomsCount = roomsCount;
+    }
+
+    public BookingDetailsView project() {
+        return new BookingDetailsView(username, hotelName, roomsCount);
     }
 }

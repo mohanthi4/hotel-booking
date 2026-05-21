@@ -2,7 +2,10 @@ package com.app.hotel_booking.services;
 
 import com.app.hotel_booking.models.BookingDetails;
 import com.app.hotel_booking.repositories.BookingRepository;
+import com.app.hotel_booking.views.BookingDetailsView;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BookingService {
@@ -15,5 +18,12 @@ public class BookingService {
     public boolean bookHotel(String username, String hotelId, int rooms) {
         bookingRepository.save(new BookingDetails(username, hotelId, rooms));
         return true;
+    }
+
+    public List<BookingDetailsView> listBookings(String username) {
+        return bookingRepository.findBookingDetailsByUsername(username)
+                .stream()
+                .map((BookingDetails::project))
+                .toList();
     }
 }
