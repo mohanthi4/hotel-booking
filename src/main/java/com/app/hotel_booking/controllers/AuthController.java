@@ -25,7 +25,7 @@ public class AuthController {
         logger.info("register request: {}", userDetailRequest.username());
         appUserDetailsService.register(userDetailRequest);
 
-        return  ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/login")
@@ -33,6 +33,6 @@ public class AuthController {
         logger.info("login request: {}", userDetailRequest.username());
         appUserDetailsService.loadUserByUsername(userDetailRequest.username());
 
-        return  ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
 }

@@ -6,14 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "hotels")
 public class Hotel {
-    
+
     @Id
-    private final String id;
+    private String id;
     private final String name;
     private final String city;
 
-    public Hotel(String id, String name, String city) {
-        this.id = id;
+    public Hotel(String name, String city) {
         this.name = name;
         this.city = city;
     }

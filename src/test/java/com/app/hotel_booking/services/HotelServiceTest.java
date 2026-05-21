@@ -22,13 +22,13 @@ class HotelServiceTest {
     void listHotels(){
         HotelRepository hotelRepository = mock(HotelRepository.class);
         Hotel expectedHotel =
-                new Hotel("H1", "Grandeur", "New York");
+                new Hotel("Grandeur", "New York");
         when(hotelRepository.findHotelsByCity(anyString())).thenReturn(Collections.singletonList(expectedHotel));
         HotelService hotelService = new HotelService(hotelRepository);
         List<HotelView> actual = hotelService.listHotels("New York");
 
         HotelView expectedHotelView =
-                new Hotel("H1", "Grandeur", "New York").project();
+                new Hotel("Grandeur", "New York").project();
         assertEquals(Collections.singletonList(expectedHotelView),actual);
     }
 

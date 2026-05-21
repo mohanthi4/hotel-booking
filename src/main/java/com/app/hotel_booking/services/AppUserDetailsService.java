@@ -34,7 +34,4 @@ public class AppUserDetailsService implements UserDetailsService {
         return userDetails;
     }
 
-//    public void login(UserDetailRequest userDetailRequest) {
-//
-//    }
 }

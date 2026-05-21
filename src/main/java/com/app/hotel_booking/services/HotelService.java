@@ -13,9 +13,14 @@ public class HotelService {
 
     public HotelService(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
+        this.hotelRepository.save(new Hotel("Mohandhi Hotel", "Kankipadu"));
     }
 
     public List<HotelView> listHotels(String city) {
         return hotelRepository.findHotelsByCity(city).stream().map((Hotel::project)).toList();
+    }
+
+    public String getHotelName(String hotelId) {
+        return hotelRepository.findNameById(hotelId);
     }
 }
