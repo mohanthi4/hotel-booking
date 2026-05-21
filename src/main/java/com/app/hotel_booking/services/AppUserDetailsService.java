@@ -1,7 +1,6 @@
 package com.app.hotel_booking.services;
 
 import com.app.hotel_booking.controllers.UserDetailRequest;
-import org.jspecify.annotations.NonNull;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,8 +32,4 @@ public class AppUserDetailsService implements UserDetailsService {
         if (userDetails == null) throw new UsernameNotFoundException("user name not found!");
         return userDetails;
     }
-
-//    public void login(UserDetailRequest userDetailRequest) {
-//
-//    }
 }
