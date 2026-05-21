@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface HotelRepository extends MongoRepository<Hotel, String> {
     List<Hotel> findHotelsByCity(String city);
+    String findNameById(String id);
 }

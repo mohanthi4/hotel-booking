@@ -29,11 +29,19 @@ public class Security {
                 .authorizeHttpRequests(auth ->
                     auth.requestMatchers("/api/users/register").permitAll()
                             .requestMatchers("/api/users/login").permitAll()
+<<<<<<< HEAD
                             .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin(AbstractHttpConfigurer::disable);
 
+=======
+                            .requestMatchers("/api/*").permitAll()
+                            .requestMatchers("/api/*/*").permitAll()
+                            .requestMatchers("/api/*/*/*").permitAll()
+                            .anyRequest().authenticated())
+                .formLogin(formLogin -> formLogin.loginProcessingUrl("/login"));
+>>>>>>> e2af54455c41903c419f6a89eedb7e941ea0f6cc
         return httpSecurity.build();
     }
 

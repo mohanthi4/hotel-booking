@@ -40,7 +40,6 @@ public class AuthController {
             throw new UsernameNotFoundException("user not found");
         }
 
-
         String token = JwtUtil.generateToken( userDetailRequest.username());
         logger.info("login request: {}", userDetailRequest.username());
         return Map.of("token", token);
