@@ -7,6 +7,7 @@ import com.app.hotel_booking.utils.JwtUtil;
 import com.app.hotel_booking.views.BookingDetailsView;
 import com.app.hotel_booking.views.BookingStatus;
 import jakarta.servlet.http.HttpServletRequest;
+import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
@@ -19,11 +20,9 @@ import java.util.List;
 public class BookingController {
     private static final Logger logger = LoggerFactory.getLogger(BookingController.class);
     private final BookingService bookingService;
-    private final HotelService hotelService;
 
-    public BookingController(BookingService bookingService, HotelService hotelService) {
+    public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
-        this.hotelService = hotelService;
     }
 
     private String getUsername(HttpServletRequest request) {
@@ -64,9 +63,14 @@ public class BookingController {
         String username = getUsername(request);
         BookingDetailsView bookingDetails = bookingService.bookDetails(username, hotelId);
 
+        HttpHeaders headers = getHttpHeaders();
+        return new ResponseEntity<>(bookingDetails.toString(), headers, HttpStatus.OK);
+    }
+
+    private HttpHeaders getHttpHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDisposition(ContentDisposition.attachment().build());
-        return new ResponseEntity<>(bookingDetails.toString(), headers, HttpStatus.OK);
+        return headers;
     }
 }

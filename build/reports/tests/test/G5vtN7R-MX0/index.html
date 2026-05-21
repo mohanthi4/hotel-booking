@@ -62,7 +62,7 @@
 </td>
 <td>
 <div class="infoBox duration">
-<div class="counter">3.828s</div>
+<div class="counter">0.957s</div>
 <p>duration</p>
 </div>
 </td>
@@ -92,14 +92,12 @@
 </tr>
 </thead>
 <tr>
-<td class="success">
-<a href="7AoYBF5HQT8.html">listHotels()</a>
-</td>
+<td class="success">listHotels()</td>
 <td class="path" hidden="">listHotels()</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>1.233s</td>
+<td>0.204s</td>
 <td class="success">100%</td>
 </tr>
 </table>
@@ -108,10 +106,10 @@
 <div class="tab">
 <h2>standard output</h2>
 <span class="code">
-<pre id="root-0-test-stdout-com.app.hotel_booking.services.HotelServiceTest">13:22:55.687 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.app.hotel_booking.services.HotelServiceTest]: HotelServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-13:22:55.795 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.app.hotel_booking.HotelBookingApplication for test class com.app.hotel_booking.services.HotelServiceTest
-13:22:55.880 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.app.hotel_booking.services.HotelServiceTest]: HotelServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-13:22:55.882 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.app.hotel_booking.HotelBookingApplication for test class com.app.hotel_booking.services.HotelServiceTest
+<pre id="root-0-test-stdout-com.app.hotel_booking.services.HotelServiceTest">2026-05-21T17:44:13.753+05:30  INFO 31806 --- [hotel-booking] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.app.hotel_booking.services.HotelServiceTest]: HotelServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-05-21T17:44:13.786+05:30  INFO 31806 --- [hotel-booking] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.app.hotel_booking.HotelBookingApplication for test class com.app.hotel_booking.services.HotelServiceTest
+2026-05-21T17:44:13.788+05:30  INFO 31806 --- [hotel-booking] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.app.hotel_booking.services.HotelServiceTest]: HotelServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-05-21T17:44:13.790+05:30  INFO 31806 --- [hotel-booking] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.app.hotel_booking.HotelBookingApplication for test class com.app.hotel_booking.services.HotelServiceTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -122,13 +120,14 @@
 
  :: Spring Boot ::                (v4.0.6)
 
-2026-05-21T13:22:56.198+05:30  INFO 13599 --- [hotel-booking] [    Test worker] c.a.h.services.HotelServiceTest          : Starting HotelServiceTest using Java 25.0.2 with PID 13599 (started by nikhilchodavarapu in /Users/nikhilchodavarapu/workspace/java-practice/hotel-booking)
-2026-05-21T13:22:56.199+05:30  INFO 13599 --- [hotel-booking] [    Test worker] c.a.h.services.HotelServiceTest          : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2026-05-21T13:22:56.742+05:30  INFO 13599 --- [hotel-booking] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2026-05-21T13:22:56.790+05:30  INFO 13599 --- [hotel-booking] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 1 MongoDB repository interface.
-2026-05-21T13:22:57.129+05:30  INFO 13599 --- [hotel-booking] [    Test worker] org.mongodb.driver.client                : MongoClient with metadata {&quot;driver&quot;: {&quot;name&quot;: &quot;mongo-java-driver|spring-boot|sync&quot;, &quot;version&quot;: &quot;5.6.5&quot;}, &quot;os&quot;: {&quot;type&quot;: &quot;Darwin&quot;, &quot;name&quot;: &quot;Mac OS X&quot;, &quot;architecture&quot;: &quot;x86_64&quot;, &quot;version&quot;: &quot;26.5&quot;}, &quot;platform&quot;: &quot;Java/Homebrew/25.0.2&quot;} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@62ea8931, com.mongodb.Jep395RecordCodecProvider@47fb7ec9, com.mongodb.KotlinCodecProvider@2f8c4fae, EnumCodecProvider{}]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
-2026-05-21T13:22:57.161+05:30  INFO 13599 --- [hotel-booking] [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=31567858, minRoundTripTimeNanos=0}
-2026-05-21T13:22:58.045+05:30  INFO 13599 --- [hotel-booking] [    Test worker] c.a.h.services.HotelServiceTest          : Started HotelServiceTest in 2.085 seconds (process running for 3.338)
+2026-05-21T17:44:13.849+05:30  INFO 31806 --- [hotel-booking] [    Test worker] c.a.h.services.HotelServiceTest          : Starting HotelServiceTest using Java 25.0.2 with PID 31806 (started by nikhilchodavarapu in /Users/nikhilchodavarapu/workspace/java-practice/hotel-booking)
+2026-05-21T17:44:13.849+05:30  INFO 31806 --- [hotel-booking] [    Test worker] c.a.h.services.HotelServiceTest          : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2026-05-21T17:44:14.094+05:30  INFO 31806 --- [hotel-booking] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2026-05-21T17:44:14.116+05:30  INFO 31806 --- [hotel-booking] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 2 MongoDB repository interfaces.
+2026-05-21T17:44:14.189+05:30  INFO 31806 --- [hotel-booking] [    Test worker] org.mongodb.driver.client                : MongoClient with metadata {&quot;driver&quot;: {&quot;name&quot;: &quot;mongo-java-driver|spring-boot|sync&quot;, &quot;version&quot;: &quot;5.6.5&quot;}, &quot;os&quot;: {&quot;type&quot;: &quot;Darwin&quot;, &quot;name&quot;: &quot;Mac OS X&quot;, &quot;architecture&quot;: &quot;x86_64&quot;, &quot;version&quot;: &quot;26.5&quot;}, &quot;platform&quot;: &quot;Java/Homebrew/25.0.2&quot;} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@71ee2fff, com.mongodb.Jep395RecordCodecProvider@68f2363, com.mongodb.KotlinCodecProvider@37fca349, EnumCodecProvider{}]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+2026-05-21T17:44:14.192+05:30  INFO 31806 --- [hotel-booking] [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2276383, minRoundTripTimeNanos=0}
+2026-05-21T17:44:14.384+05:30  INFO 31806 --- [hotel-booking] [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name appUserDetailsService
+2026-05-21T17:44:14.502+05:30  INFO 31806 --- [hotel-booking] [    Test worker] c.a.h.services.HotelServiceTest          : Started HotelServiceTest in 0.698 seconds (process running for 7.181)
 </pre>
 <button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-com.app.hotel_booking.services.HotelServiceTest">Copy</button>
 </span>
@@ -143,7 +142,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 9.4.1</a> at 21 May 2026, 1:22:59 pm</p>
+<a href="https://www.gradle.org">Gradle 9.4.1</a> at 21 May 2026, 5:44:14 pm</p>
 </div>
 </div>
 </body>

@@ -3,6 +3,4 @@ spring:
     name: hotel-booking
 
   mongodb:
-    database: hotelsDB
-
-
+    uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/hotelsDB}

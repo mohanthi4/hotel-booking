@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.app.hotel_booking.controllers.SearchControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-05-21T12:14:08.689Z" hostname="Nikhils-MacBook-Pro.local" time="5.052">
+  <properties/>
+  <testcase name="searchHotels()" classname="com.app.hotel_booking.controllers.SearchControllerTest" time="0.435"/>
+  <system-out><![CDATA[17:44:08.986 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.app.hotel_booking.controllers.SearchControllerTest]: SearchControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:44:09.231 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.app.hotel_booking.HotelBookingApplication for test class com.app.hotel_booking.controllers.SearchControllerTest
+17:44:09.385 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.app.hotel_booking.controllers.SearchControllerTest]: SearchControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:44:09.389 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.app.hotel_booking.HotelBookingApplication for test class com.app.hotel_booking.controllers.SearchControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.6)
+
+2026-05-21T17:44:09.904+05:30  INFO 31806 --- [hotel-booking] [    Test worker] c.a.h.controllers.SearchControllerTest   : Starting SearchControllerTest using Java 25.0.2 with PID 31806 (started by nikhilchodavarapu in /Users/nikhilchodavarapu/workspace/java-practice/hotel-booking)
+2026-05-21T17:44:09.906+05:30  INFO 31806 --- [hotel-booking] [    Test worker] c.a.h.controllers.SearchControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-05-21T17:44:10.630+05:30  INFO 31806 --- [hotel-booking] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2026-05-21T17:44:10.695+05:30  INFO 31806 --- [hotel-booking] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 2 MongoDB repository interfaces.
+2026-05-21T17:44:12.003+05:30  INFO 31806 --- [hotel-booking] [    Test worker] org.mongodb.driver.client                : MongoClient with metadata {"driver": {"name": "mongo-java-driver|spring-boot|sync", "version": "5.6.5"}, "os": {"type": "Darwin", "name": "Mac OS X", "architecture": "x86_64", "version": "26.5"}, "platform": "Java/Homebrew/25.0.2"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@71ee2fff, com.mongodb.Jep395RecordCodecProvider@68f2363, com.mongodb.KotlinCodecProvider@37fca349, EnumCodecProvider{}]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
+2026-05-21T17:44:12.025+05:30  INFO 31806 --- [hotel-booking] [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, cryptd=false, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=27, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=23193796, minRoundTripTimeNanos=0}
+2026-05-21T17:44:12.508+05:30  INFO 31806 --- [hotel-booking] [    Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name appUserDetailsService
+2026-05-21T17:44:13.119+05:30  INFO 31806 --- [hotel-booking] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-05-21T17:44:13.119+05:30  INFO 31806 --- [hotel-booking] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-05-21T17:44:13.124+05:30  INFO 31806 --- [hotel-booking] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2026-05-21T17:44:13.274+05:30  INFO 31806 --- [hotel-booking] [    Test worker] c.a.h.controllers.SearchControllerTest   : Started SearchControllerTest in 3.781 seconds (process running for 5.954)
+2026-05-21T17:44:13.535+05:30  INFO 31806 --- [hotel-booking] [    Test worker] c.a.h.controllers.SearchController       : Received request to search hotels
+[HotelView[id=H1, name=Grandeur, city=New York]]
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/nikhilchodavarapu/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.8/f09415827a71be7ed621c7bd02550678f28bc81c/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
