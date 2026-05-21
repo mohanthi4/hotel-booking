@@ -29,6 +29,7 @@ public class Security {
                             .requestMatchers("/api/users/login").permitAll()
                             .requestMatchers("/api/*").permitAll()
                             .requestMatchers("/api/*/*").permitAll()
+                            .requestMatchers("/api/*/*/*").permitAll()
                             .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin.loginProcessingUrl("/login"));
         return httpSecurity.build();

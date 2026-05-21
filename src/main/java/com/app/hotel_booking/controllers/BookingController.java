@@ -7,7 +7,7 @@ import com.app.hotel_booking.views.BookingDetailsView;
 import com.app.hotel_booking.views.BookingStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +27,6 @@ public class BookingController {
     @PostMapping
     public ResponseEntity<BookingStatus> bookHotel(@RequestBody BookingRequest bookingRequest) {
         logger.info("Received request to book a hotel");
-//        String hotelName = hotelService.getHotelName(bookingRequest.hotelId());
         boolean isBooked = bookingService.bookHotel("mohandhi", bookingRequest.hotel_id(), bookingRequest.rooms());
         return ResponseEntity.ok(new BookingStatus(isBooked));
     }
@@ -37,5 +36,15 @@ public class BookingController {
         logger.info("Received request to list the hotels booked by user");
         return bookingService.listBookings("mohandhi");
     }
-    
+
+    @GetMapping("/{hotelId}/receipt.pdf")
+    public ResponseEntity<String> generateReceipt(@PathVariable String hotelId) {
+        logger.info("Received request to download receipt");
+        BookingDetailsView bookingDetails = bookingService.bookDetails("mohandhi", hotelId);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDisposition(ContentDisposition.attachment().build());
+        return new ResponseEntity<>(bookingDetails.toString(), headers, HttpStatus.OK);
+    }
 }

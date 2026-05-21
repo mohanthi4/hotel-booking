@@ -26,4 +26,8 @@ public class BookingService {
                 .map((BookingDetails::project))
                 .toList();
     }
+
+    public BookingDetailsView bookDetails(String username, String hotelId) {
+        return bookingRepository.findByUsernameAndHotelId(username, hotelId).project();
+    }
 }
