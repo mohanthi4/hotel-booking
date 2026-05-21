@@ -1,6 +1,7 @@
 package com.app.hotel_booking.config;
 
 import com.app.hotel_booking.filter.JwtFilter;
+import com.app.hotel_booking.repositories.UserRepository;
 import com.app.hotel_booking.services.AppUserDetailsService;
 import com.app.hotel_booking.filter.LogginFilter;
 import org.springframework.context.annotation.Bean;
@@ -29,21 +30,22 @@ public class Security {
                 .authorizeHttpRequests(auth ->
                     auth.requestMatchers("/api/users/register").permitAll()
                             .requestMatchers("/api/users/login").permitAll()
+<<<<<<< Updated upstream
                             .requestMatchers("/api/*").permitAll()
                             .requestMatchers("/api/*/*").permitAll()
                             .requestMatchers("/api/*/*/*").permitAll()
                             .anyRequest().authenticated())
                 .addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin(AbstractHttpConfigurer::disable);
-
         return httpSecurity.build();
     }
 
-    @Bean
-    public AppUserDetailsService appUserDetailsService(PasswordEncoder passwordEncoder) {
-        ConcurrentHashMap<String, UserDetails> users = new ConcurrentHashMap<>();
-        return new AppUserDetailsService(users, passwordEncoder);
-    }
+//    @Bean
+//    public AppUserDetailsService appUserDetailsService(PasswordEncoder passwordEncoder) {
+//        ConcurrentHashMap<String, UserDetails> users = new ConcurrentHashMap<>();
+//
+//        return new AppUserDetailsService(, passwordEncoder);
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -1,35 +1,37 @@
 package com.app.hotel_booking.services;
 
 import com.app.hotel_booking.controllers.UserDetailRequest;
-import org.jspecify.annotations.NonNull;
-import org.springframework.security.core.userdetails.User;
+import com.app.hotel_booking.models.User;
+import com.app.hotel_booking.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import java.util.concurrent.ConcurrentHashMap;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AppUserDetailsService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
-    private final ConcurrentHashMap<String, UserDetails> users;
+    private final UserRepository users;
 
-    public AppUserDetailsService(ConcurrentHashMap<String, UserDetails> users, PasswordEncoder passwordEncoder) {
+    public AppUserDetailsService(UserRepository users, PasswordEncoder passwordEncoder) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
     }
 
     public void register(UserDetailRequest userDetailRequest) {
-        UserDetails user = User.builder()
-                .passwordEncoder(this.passwordEncoder::encode)
-                .username(userDetailRequest.username())
-                .password(userDetailRequest.password())
-                .build();
-        this.users.put(user.getUsername(), user);
+//        UserDetails user = User.builder()
+//                .passwordEncoder(this.passwordEncoder::encode)
+//                .username(userDetailRequest.username())
+//                .password(userDetailRequest.password())
+//                .build();
+
+        users.save(new User(userDetailRequest.username(), userDetailRequest.password()));
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails userDetails = this.users.get(username);
+        UserDetails userDetails = this.users.findByUsername(username);
         if (userDetails == null) throw new UsernameNotFoundException("user name not found!");
         return userDetails;
     }
