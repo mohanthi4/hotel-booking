@@ -3,11 +3,11 @@ package com.app.hotel_booking.models;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class User {
+public class Customer {
     private final String username;
     private final String password;
 
-    public User(String username, String password) {
+    public Customer(String username, String password) {
         this.username = username;
         this.password = password;
     }

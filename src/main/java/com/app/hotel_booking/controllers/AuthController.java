@@ -5,8 +5,6 @@ import com.app.hotel_booking.utils.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,11 +33,7 @@ public class AuthController {
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody UserDetailRequest userDetailRequest) {
         logger.info("login request: {}", userDetailRequest.username());
-        UserDetails userDetails = appUserDetailsService.loadUserByUsername(userDetailRequest.username());
-
-        if (userDetails == null) {
-            throw new UsernameNotFoundException("user not found");
-        }
+        appUserDetailsService.loadUserByUsername(userDetailRequest.username());
 
         String token = JwtUtil.generateToken( userDetailRequest.username());
         return Map.of("token", token);
