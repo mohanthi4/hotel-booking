@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/users")
 public class AuthController {
     private final AppUserDetailsService appUserDetailsService;
-    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+    private static final Logger logger = LoggerFactory.getLogger("ldkj");
 
     public AuthController(AppUserDetailsService appUserDetailsService) {
         this.appUserDetailsService = appUserDetailsService;
@@ -22,8 +22,16 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserDetailRequest userDetailRequest) {
-        logger.info("request: {}", userDetailRequest.username());
+        logger.info("register request: {}", userDetailRequest.username());
         appUserDetailsService.register(userDetailRequest);
+
+        return  ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserDetailRequest userDetailRequest) {
+        logger.info("login request: {}", userDetailRequest.username());
+        appUserDetailsService.loadUserByUsername(userDetailRequest.username());
 
         return  ResponseEntity.ok().build();
     }

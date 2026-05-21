@@ -25,8 +25,8 @@ public class Security {
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                    auth.requestMatchers("/api/auth/register").permitAll()
-                            .requestMatchers("/login").permitAll()
+                    auth.requestMatchers("/api/users/register").permitAll()
+                            .requestMatchers("/api/users/login").permitAll()
                             .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin.loginProcessingUrl("/login"));
         return httpSecurity.build();

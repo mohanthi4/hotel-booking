@@ -1,0 +1,160 @@
+File: src/main/java/com/app/hotel_booking/config/Security.java
+package com.app.hotel_booking.config;
+
+import com.app.hotel_booking.services.AppUserDetailsService;
+import com.app.hotel_booking.filter.LogginFilter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+@Configuration
+@EnableWebSecurity
+public class Security {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity, LogginFilter logginFilter) {
+        httpSecurity
+                .cors(Customizer.withDefaults())
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth ->
+                    auth.requestMatchers("/api/auth/register").permitAll()
+                            .requestMatchers("/login").permitAll()
+                            .anyRequest().authenticated())
+                .formLogin(formLogin -> formLogin.loginProcessingUrl("/login"));
+        return httpSecurity.build();
+    }
+
+    @Bean
+    public AppUserDetailsService appUserDetailsService(PasswordEncoder passwordEncoder) {
+        ConcurrentHashMap<String, UserDetails> users = new ConcurrentHashMap<>();
+        return new AppUserDetailsService(users, passwordEncoder);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
+
+File: src/main/java/com/app/hotel_booking/filter/LogginFilter.java
+package com.app.hotel_booking.filter;
+
+import com.app.hotel_booking.controllers.AuthController;
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+
+@Component
+public class LogginFilter implements Filter {
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        logger.info("hello {}", httpRequest.getMethod());
+        chain.doFilter(request, response);
+    }
+
+}
+
+File: src/main/java/com/app/hotel_booking/services/AppUserDetailsService.java
+package com.app.hotel_booking.services;
+
+import com.app.hotel_booking.controllers.UserDetailRequest;
+import org.jspecify.annotations.NonNull;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class AppUserDetailsService implements UserDetailsService {
+    private final PasswordEncoder passwordEncoder;
+    private final ConcurrentHashMap<String, UserDetails> users;
+
+    public AppUserDetailsService(ConcurrentHashMap<String, UserDetails> users, PasswordEncoder passwordEncoder) {
+        this.users = users;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public void register(UserDetailRequest userDetailRequest) {
+        UserDetails user = User.builder()
+                .passwordEncoder(this.passwordEncoder::encode)
+                .username(userDetailRequest.username())
+                .password(userDetailRequest.password())
+                .build();
+        this.users.put(user.getUsername(), user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserDetails userDetails = this.users.get(username);
+        if (userDetails == null) throw new UsernameNotFoundException("user name not found!");
+        return userDetails;
+    }
+
+//    public void login(UserDetailRequest userDetailRequest) {
+//
+//    }
+}
+
+File: src/main/java/com/app/hotel_booking/controllers/AuthController.java
+package com.app.hotel_booking.controllers;
+
+import com.app.hotel_booking.controllers.UserDetailRequest;
+import com.app.hotel_booking.services.AppUserDetailsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/users")
+public class AuthController {
+    private final AppUserDetailsService appUserDetailsService;
+    private static final Logger logger = LoggerFactory.getLogger("ldkj");
+
+    public AuthController(AppUserDetailsService appUserDetailsService) {
+        this.appUserDetailsService = appUserDetailsService;
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody UserDetailRequest userDetailRequest) {
+        logger.info("register request: {}", userDetailRequest.username());
+        appUserDetailsService.register(userDetailRequest);
+
+        return  ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserDetailRequest userDetailRequest) {
+        logger.info("login request: {}", userDetailRequest.username());
+        appUserDetailsService.loadUserByUsername(userDetailRequest.username());
+
+        return  ResponseEntity.ok().build();
+    }
+}
+
+File: src/main/java/com/app/hotel_booking/controllers/UserDetailRequest.java
+package com.app.hotel_booking.controllers;
+
+public record UserDetailRequest(String username, String password) {
+}
