@@ -1,13 +1,12 @@
 package com.app.hotel_booking.controllers;
 
 import com.app.hotel_booking.controllers.requests.BookingRequest;
+import com.app.hotel_booking.exceptions.UnauthorizedUserException;
 import com.app.hotel_booking.services.BookingService;
-import com.app.hotel_booking.services.HotelService;
 import com.app.hotel_booking.utils.JwtUtil;
 import com.app.hotel_booking.views.BookingDetailsView;
 import com.app.hotel_booking.views.BookingStatus;
 import jakarta.servlet.http.HttpServletRequest;
-import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
@@ -32,7 +31,7 @@ public class BookingController {
         if (authHeader == null ||
                 !authHeader.startsWith("Bearer ")) {
 
-            return "No token";
+             throw new UnauthorizedUserException("no user found");
         }
 
         String token =
@@ -57,6 +56,13 @@ public class BookingController {
         return bookingService.listBookings(username);
     }
 
+    private HttpHeaders getHttpHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDisposition(ContentDisposition.attachment().build());
+        return headers;
+    }
+
     @GetMapping("/{hotelId}/receipt.pdf")
     public ResponseEntity<String> generateReceipt(@PathVariable String hotelId, HttpServletRequest request) {
         logger.info("Received request to download receipt");
@@ -67,10 +73,5 @@ public class BookingController {
         return new ResponseEntity<>(bookingDetails.toString(), headers, HttpStatus.OK);
     }
 
-    private HttpHeaders getHttpHeaders() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDisposition(ContentDisposition.attachment().build());
-        return headers;
-    }
+
 }

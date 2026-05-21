@@ -18,25 +18,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class Security {
 
     @Bean
-    public SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity, LogginFilter logginFilter) {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, LogginFilter logginFilter) {
         httpSecurity
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth ->
-                    auth.requestMatchers("/api/users/register").permitAll()
-                            .requestMatchers("/api/users/login").permitAll()
-                            .anyRequest().authenticated())
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/api/users/register").permitAll()
+                        .requestMatchers("/api/users/login").permitAll()
+                        .requestMatchers("/api/search/hotels").permitAll()
+                        .anyRequest().authenticated())
                 .addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin(AbstractHttpConfigurer::disable);
         return httpSecurity.build();
     }
-
-//    @Bean
-//    public AppUserDetailsService appUserDetailsService(PasswordEncoder passwordEncoder) {
-//        ConcurrentHashMap<String, UserDetails> users = new ConcurrentHashMap<>();
-//
-//        return new AppUserDetailsService(, passwordEncoder);
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
