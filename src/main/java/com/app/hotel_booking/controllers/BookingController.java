@@ -3,8 +3,10 @@ package com.app.hotel_booking.controllers;
 import com.app.hotel_booking.controllers.requests.BookingRequest;
 import com.app.hotel_booking.services.BookingService;
 import com.app.hotel_booking.services.HotelService;
+import com.app.hotel_booking.utils.JwtUtil;
 import com.app.hotel_booking.views.BookingDetailsView;
 import com.app.hotel_booking.views.BookingStatus;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
@@ -24,23 +26,43 @@ public class BookingController {
         this.hotelService = hotelService;
     }
 
+    private String getUsername(HttpServletRequest request) {
+        String authHeader =
+                request.getHeader("Authorization");
+
+        if (authHeader == null ||
+                !authHeader.startsWith("Bearer ")) {
+
+            return "No token";
+        }
+
+        String token =
+                authHeader.substring(7);
+
+        return JwtUtil.extractUsername(token);
+    }
+
     @PostMapping
-    public ResponseEntity<BookingStatus> bookHotel(@RequestBody BookingRequest bookingRequest) {
+    public ResponseEntity<BookingStatus> bookHotel(@RequestBody BookingRequest bookingRequest, HttpServletRequest request) {
+
         logger.info("Received request to book a hotel");
-        boolean isBooked = bookingService.bookHotel("mohandhi", bookingRequest.hotel_id(), bookingRequest.rooms());
+        String username = getUsername(request);
+        boolean isBooked = bookingService.bookHotel(username, bookingRequest.hotel_id(), bookingRequest.rooms());
         return ResponseEntity.ok(new BookingStatus(isBooked));
     }
 
     @GetMapping
-    public List<BookingDetailsView> listBookings() {
+    public List<BookingDetailsView> listBookings(HttpServletRequest request) {
         logger.info("Received request to list the hotels booked by user");
-        return bookingService.listBookings("mohandhi");
+        String username = getUsername(request);
+        return bookingService.listBookings(username);
     }
 
     @GetMapping("/{hotelId}/receipt.pdf")
-    public ResponseEntity<String> generateReceipt(@PathVariable String hotelId) {
+    public ResponseEntity<String> generateReceipt(@PathVariable String hotelId, HttpServletRequest request) {
         logger.info("Received request to download receipt");
-        BookingDetailsView bookingDetails = bookingService.bookDetails("mohandhi", hotelId);
+        String username = getUsername(request);
+        BookingDetailsView bookingDetails = bookingService.bookDetails(username, hotelId);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
