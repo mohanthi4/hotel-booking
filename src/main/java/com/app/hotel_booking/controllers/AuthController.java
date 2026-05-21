@@ -33,7 +33,12 @@ public class AuthController {
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody UserDetailRequest userDetailRequest) {
         logger.info("login request: {}", userDetailRequest.username());
-        appUserDetailsService.loadUserByUsername(userDetailRequest.username());
+        try{
+            appUserDetailsService.loadUserByUsername(userDetailRequest.username());
+            appUserDetailsService.verifyPassword(userDetailRequest.username(), userDetailRequest.password());
+        } catch (Exception e) {
+            return Map.of("msg", e.getMessage());
+        }
 
         String token = JwtUtil.generateToken( userDetailRequest.username());
         return Map.of("token", token);
