@@ -2,7 +2,7 @@ File: src/main/java/com/app/hotel_booking/config/Security.java
 package com.app.booking_service.config;
 
 import com.app.booking_service.services.AppUserDetailsService;
-import com.app.booking_service.filter.LogginFilter;
+import filter.com.app.LogginFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
