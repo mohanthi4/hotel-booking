@@ -1,8 +1,8 @@
 File: src/main/java/com/app/hotel_booking/config/Security.java
-package com.app.hotel_booking.config;
+package com.app.booking_service.config;
 
-import com.app.hotel_booking.services.AppUserDetailsService;
-import com.app.hotel_booking.filter.LogginFilter;
+import com.app.booking_service.services.AppUserDetailsService;
+import com.app.booking_service.filter.LogginFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -46,9 +46,9 @@ public class Security {
 }
 
 File: src/main/java/com/app/hotel_booking/filter/LogginFilter.java
-package com.app.hotel_booking.filter;
+package com.app.booking_service.filter;
 
-import com.app.hotel_booking.controllers.AuthController;
+import com.app.booking_service.controllers.AuthController;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -72,9 +72,9 @@ public class LogginFilter implements Filter {
 }
 
 File: src/main/java/com/app/hotel_booking/services/AppUserDetailsService.java
-package com.app.hotel_booking.services;
+package com.app.booking_service.services;
 
-import com.app.hotel_booking.controllers.UserDetailRequest;
+import com.app.booking_service.controllers.UserDetailRequest;
 import org.jspecify.annotations.NonNull;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -114,10 +114,10 @@ public class AppUserDetailsService implements UserDetailsService {
 }
 
 File: src/main/java/com/app/hotel_booking/controllers/AuthController.java
-package com.app.hotel_booking.controllers;
+package com.app.booking_service.controllers;
 
-import com.app.hotel_booking.controllers.UserDetailRequest;
-import com.app.hotel_booking.services.AppUserDetailsService;
+import com.app.booking_service.controllers.UserDetailRequest;
+import com.app.booking_service.services.AppUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -154,7 +154,7 @@ public class AuthController {
 }
 
 File: src/main/java/com/app/hotel_booking/controllers/UserDetailRequest.java
-package com.app.hotel_booking.controllers;
+package com.app.booking_service.controllers;
 
 public record UserDetailRequest(String username, String password) {
 }

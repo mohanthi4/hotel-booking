@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.app.hotel-booking' is invalid and this project uses 'com.app.hotel_booking' instead.
+* The original package name 'com.app.hotel-booking' is invalid and this project uses 'com.app.booking_service' instead.
 
 # Getting Started
 
