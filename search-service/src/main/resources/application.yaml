@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: hotel
+
+  mongodb:
+    uri: mongodb://mongodb:27017/hotelsDB

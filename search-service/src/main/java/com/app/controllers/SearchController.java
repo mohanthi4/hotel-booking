@@ -19,7 +19,7 @@ public class SearchController {
         this.hotelService = hotelService;
     }
 
-    @GetMapping("/api/search/hotels")
+    @GetMapping("/api/search")
     public List<HotelView> searchHotels(@RequestParam String city) {
         logger.info("Received request to search hotels");
         return hotelService.listHotels(city);
