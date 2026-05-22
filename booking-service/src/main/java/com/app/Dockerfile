@@ -1,9 +1,0 @@
-FROM gradle:jdk25
-
-WORKDIR /app
-
-COPY . .
-
-RUN gradle clean build
-
-CMD ["java", "-jar", "build/libs/booking_service-0.0.1-SNAPSHOT.jar"]
