@@ -1,7 +1,0 @@
-server:
-spring:
-  application:
-    name: hotel-booking
-
-  mongodb:
-    uri: mongodb://mongodb:27017/hotelsDB

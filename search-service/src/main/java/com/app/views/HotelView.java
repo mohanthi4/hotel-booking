@@ -1,4 +1,6 @@
 package com.app.views;
 
-public record HotelView(String id, String name, String city) {
+import java.io.Serializable;
+
+public record HotelView(String id, String name, String city) implements Serializable {
 }

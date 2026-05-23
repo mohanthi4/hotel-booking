@@ -19,7 +19,7 @@ public class HotelService {
 
     @Cacheable(value = "city", key = "#city")
     public List<HotelView> listHotels(String city) {
-        return hotelRepository.findHotelsByCity(city).stream().map((Hotel::project)).toList();
+        return hotelRepository.findHotelsByCity(city).stream().map(Hotel::project).toList();
     }
 
     public String getHotelName(String hotelId) {
