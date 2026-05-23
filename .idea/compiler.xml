@@ -4,9 +4,16 @@
     <bytecodeTargetLevel target="25" />
   </component>
   <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_STRING" value="-parameters" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="hotel-booking" options="" />
+      <module name="hotel-booking.booking-service" options="-parameters" />
+      <module name="hotel-booking.booking-service.main" options="-parameters" />
+      <module name="hotel-booking.booking-service.test" options="-parameters" />
+      <module name="hotel-booking.search-service" options="-parameters" />
+      <module name="hotel-booking.search-service.main" options="-parameters" />
+      <module name="hotel-booking.search-service.test" options="-parameters" />
+      <module name="hotel-booking.user-service" options="-parameters" />
+      <module name="hotel-booking.user-service.main" options="-parameters" />
+      <module name="hotel-booking.user-service.test" options="-parameters" />
     </option>
   </component>
 </project>
